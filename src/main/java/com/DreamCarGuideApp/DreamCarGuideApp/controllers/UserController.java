@@ -1,7 +1,7 @@
 package com.DreamCarGuideApp.DreamCarGuideApp.controllers;
 
 import com.DreamCarGuideApp.DreamCarGuideApp.models.User;
-import com.DreamCarGuideApp.DreamCarGuideApp.repositories.UserRepository;
+import com.DreamCarGuideApp.DreamCarGuideApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +13,18 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
    @PostMapping("/user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
 
-        return new ResponseEntity<>(userRepository.save(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable Integer id) {
 
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userService.findById(id);
 
         if (!user.isPresent()) {
 
@@ -37,13 +37,13 @@ public class UserController {
     @GetMapping("/user")
     public ResponseEntity<Iterable<User>> getUserList() {
 
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User updatedUser) {
 
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userService.findById(id);
 
         if (!user.isPresent()) {
 
@@ -52,7 +52,7 @@ public class UserController {
 
         updatedUser.setId(id);
 
-       userRepository.save(updatedUser);
+       userService.save(updatedUser);
 
         return new ResponseEntity<>(updatedUser, HttpStatus.CREATED);
     }
@@ -60,7 +60,7 @@ public class UserController {
    @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUser(@RequestBody User user) {
 
-        userRepository.delete(user);
+        userService.delete(user);
 
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }

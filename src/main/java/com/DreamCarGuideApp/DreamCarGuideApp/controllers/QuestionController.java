@@ -1,7 +1,7 @@
 package com.DreamCarGuideApp.DreamCarGuideApp.controllers;
 
 import com.DreamCarGuideApp.DreamCarGuideApp.models.Question;
-import com.DreamCarGuideApp.DreamCarGuideApp.repositories.QuestionRepository;
+import com.DreamCarGuideApp.DreamCarGuideApp.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +13,18 @@ import java.util.Optional;
 public class QuestionController {
 
     @Autowired
-    QuestionRepository questionRepository;
+    QuestionService questionService;
 
     @PostMapping("/question")
     public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
 
-        return new ResponseEntity<>(questionRepository.save(question), HttpStatus.CREATED);
+        return new ResponseEntity<>(questionService.save(question), HttpStatus.CREATED);
     }
 
     @GetMapping("/question/{id}")
     public ResponseEntity<Question> getQuestion(@PathVariable Integer id) {
 
-        Optional<Question> question = questionRepository.findById(id);
+        Optional<Question> question = questionService.findById(id);
 
         if (!question.isPresent()) {
 
@@ -37,13 +37,13 @@ public class QuestionController {
     @GetMapping("/question")
     public ResponseEntity<Iterable<Question>> getQuestionList() {
 
-        return new ResponseEntity<>(questionRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(questionService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/question/{id}")
     public ResponseEntity<Question> updateQuestion(@PathVariable Integer id, @RequestBody Question updatedQuestion) {
 
-        Optional<Question> question = questionRepository.findById(id);
+        Optional<Question> question = questionService.findById(id);
 
         if (!question.isPresent()) {
 
@@ -52,7 +52,7 @@ public class QuestionController {
 
         updatedQuestion.setId(id);
 
-        questionRepository.save(updatedQuestion);
+        questionService.save(updatedQuestion);
 
         return new ResponseEntity<>(updatedQuestion, HttpStatus.CREATED);
     }
@@ -60,7 +60,7 @@ public class QuestionController {
     @DeleteMapping("/question/{id}")
     public ResponseEntity<?> deleteQuestion(@RequestBody Question question) {
 
-        questionRepository.delete(question);
+        questionService.delete(question);
 
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }

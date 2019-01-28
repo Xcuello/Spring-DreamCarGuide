@@ -16,21 +16,6 @@ public class DreamCarGuideAppApplication {
 
 		SpringApplication.run(DreamCarGuideAppApplication.class, args);
 	}
-
-   /* @Bean
-    ApplicationRunner init(QuestionRepository questionRepository) {
-
-		return args -> {
-			Stream.of(new Question("Would you prefer a coupe or a sedan?"),
-					new Question("What is your price range?")
-					.forEach(questionRepository::save));
-		};
-
-    }
-
-    */
-
-
 }
 
 
