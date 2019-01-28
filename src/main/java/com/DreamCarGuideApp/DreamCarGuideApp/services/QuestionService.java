@@ -1,6 +1,7 @@
 package com.DreamCarGuideApp.DreamCarGuideApp.services;
 
 import com.DreamCarGuideApp.DreamCarGuideApp.models.Question;
+import com.DreamCarGuideApp.DreamCarGuideApp.models.User;
 import com.DreamCarGuideApp.DreamCarGuideApp.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,11 @@ public class QuestionService {
     }
 
     public Question save(Question question) {
+
+        return questionRepository.save(question);
+    }
+
+    public Question update(Question question) {
 
         return questionRepository.save(question);
     }
