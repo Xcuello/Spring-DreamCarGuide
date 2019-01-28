@@ -10,8 +10,11 @@ public class Question {
     private Integer id;
     private String query;
 
-    public Question(Integer id, String query) {
+    public Question() {
 
+    }
+
+    public Question(Integer id, String query) {
         this.id = id;
         this.query = query;
     }

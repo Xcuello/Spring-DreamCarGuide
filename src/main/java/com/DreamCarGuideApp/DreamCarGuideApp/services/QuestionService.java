@@ -6,6 +6,7 @@ import com.DreamCarGuideApp.DreamCarGuideApp.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Service
@@ -15,28 +16,14 @@ public class QuestionService {
     QuestionRepository questionRepository;
 
 
-    public QuestionService() {
+    @PostConstruct
+    public void initIt() throws Exception {
 
-        if (questionRepository != null) {
-
-            questionRepository.save(new Question(0, "How much do you have to spend?"));
-        }
-        if (questionRepository != null) {
-
-            questionRepository.save(new Question(1, "Would you prefer 2 doors or 4 doors?"));
-        }
-        if (questionRepository != null) {
-
-            questionRepository.save(new Question(2, "Is gas mileage important to you?"));
-        }
-        if (questionRepository != null) {
-
-            questionRepository.save(new Question(3, "Would you prefer Automatic or Manual transmission?"));
-        }
-        if (questionRepository != null) {
-
-            questionRepository.save(new Question(4, "Do you need All-Wheel Drive?"));
-        }
+        questionRepository.save(new Question(0, "How much do you have to spend?"));
+        questionRepository.save(new Question(1, "Would you prefer 2 doors or 4 doors?"));
+        questionRepository.save(new Question(2, "Is gas mileage important to you?"));
+        questionRepository.save(new Question(3, "Would you prefer Automatic or Manual transmission?"));
+        questionRepository.save(new Question(4, "Do you need All-Wheel Drive?"));
     }
 
     public Question save(Question question) {

@@ -12,6 +12,10 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    public User() {
+
+    }
+
     public User(Integer id, String email) {
 
         this.id = id;
