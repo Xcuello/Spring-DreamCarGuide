@@ -30,9 +30,12 @@ public class QuestionService {
         }
         if (questionRepository != null) {
 
-            questionRepository.save(new Question(3, "Automatic or Manual Transmission?"));
+            questionRepository.save(new Question(3, "Would you prefer Automatic or Manual transmission?"));
         }
+        if (questionRepository != null) {
 
+            questionRepository.save(new Question(4, "Do you need All-Wheel Drive?"));
+        }
     }
 
     public Question save(Question question) {
