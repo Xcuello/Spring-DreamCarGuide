@@ -19,11 +19,10 @@ public class QuestionService {
     @PostConstruct
     public void initIt() throws Exception {
 
-        questionRepository.save(new Question(0, "How much do you have to spend?"));
-        questionRepository.save(new Question(1, "Would you prefer 2 doors or 4 doors?"));
-        questionRepository.save(new Question(2, "Is gas mileage important to you?"));
-        questionRepository.save(new Question(3, "Would you prefer Automatic or Manual transmission?"));
-        questionRepository.save(new Question(4, "Do you need All-Wheel Drive?"));
+        questionRepository.save(new Question(0, "Is storage important you?"));
+        questionRepository.save(new Question(1, "Is high gas mileage important to you?"));
+        questionRepository.save(new Question(2, "Is speed and acceleration important to you"));
+        questionRepository.save(new Question(3, "Do you need All-Wheel Drive?"));
     }
 
     public Question save(Question question) {
