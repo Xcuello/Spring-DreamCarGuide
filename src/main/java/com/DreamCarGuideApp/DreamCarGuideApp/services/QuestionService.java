@@ -18,7 +18,6 @@ public class QuestionService {
 
     @PostConstruct
     public void initIt() throws Exception {
-
         questionRepository.save(new Question(0, "Is storage important you?"));
         questionRepository.save(new Question(1, "Is high gas mileage important to you?"));
         questionRepository.save(new Question(2, "Is speed and acceleration important to you"));
