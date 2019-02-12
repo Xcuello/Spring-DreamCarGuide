@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 public class CarQueryController {
@@ -16,6 +15,7 @@ public class CarQueryController {
 
     @PostMapping("/carquery")
     public ResponseEntity<CarQueryResponse> createCarQueryResponse(@RequestBody CarQueryResponse carquery) {
+
         return new ResponseEntity<>(carquerysService.save(carquery), HttpStatus.CREATED);
     }
 
@@ -43,13 +43,16 @@ public class CarQueryController {
 
     @GetMapping("/carquery")
     public ResponseEntity<Iterable<CarQueryResponse>> getCarQueryResponseList() {
+
         return new ResponseEntity<>(carquerysService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/carquery/{id}")
     public ResponseEntity<CarQueryResponse> updateCarQueryResponse(@PathVariable Integer id, @RequestBody CarQueryResponse updatedCarQueryResponse) {
+
         Optional<CarQueryResponse> carquery = carquerysService.findById(id);
         if (!carquery.isPresent()) {
+
             return new ResponseEntity<>(updatedCarQueryResponse, HttpStatus.OK);
         }
 
@@ -60,7 +63,9 @@ public class CarQueryController {
 
     @DeleteMapping("/carquery/{id}")
     public ResponseEntity<?> deleteCarQueryResponse(@RequestBody CarQueryResponse carquery) {
+
         carquerysService.delete(carquery);
+
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 }

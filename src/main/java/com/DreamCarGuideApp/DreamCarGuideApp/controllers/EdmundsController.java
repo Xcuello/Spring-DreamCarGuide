@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.util.Optional;
 
 public class EdmundsController {
@@ -19,6 +18,7 @@ public class EdmundsController {
 
     @PostMapping("/edmund")
     public ResponseEntity<EdmundResponse> createEdmundResponse(@RequestBody EdmundResponse edmund) {
+
         return new ResponseEntity<>(edmundsService.save(edmund), HttpStatus.CREATED);
     }
 
@@ -49,24 +49,31 @@ public class EdmundsController {
 
     @GetMapping("/edmund")
     public ResponseEntity<Iterable<EdmundResponse>> getEdmundResponseList() {
+
         return new ResponseEntity<>(edmundsService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/edmund/{id}")
     public ResponseEntity<EdmundResponse> updateEdmundResponse(@PathVariable Integer id, @RequestBody EdmundResponse updatedEdmundResponse) {
+
         Optional<EdmundResponse> edmund = edmundsService.findById(id);
+
         if (!edmund.isPresent()) {
+
             return new ResponseEntity<>(updatedEdmundResponse, HttpStatus.OK);
         }
 
         updatedEdmundResponse.setId(id);
         edmundsService.save(updatedEdmundResponse);
+
         return new ResponseEntity<>(updatedEdmundResponse, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/edmund/{id}")
     public ResponseEntity<?> deleteEdmundResponse(@RequestBody EdmundResponse edmund) {
+
         edmundsService.delete(edmund);
+
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
